@@ -1,0 +1,23 @@
+{
+  "name": "primeros-pasos-en-typescript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.ts",
+  "scripts": {
+    "start": "ts-node .",
+    "dev": "nodemon .",
+    "trans": "tsc",
+    "build:prod": "rimraf ./build && tsc",
+    "start:prod": "npm run build:prod && node build/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.2.3",
+    "nodemon": "^2.0.22",
+    "rimraf": "^5.0.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4"
+  }
+}
