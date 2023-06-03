@@ -1,5 +1,7 @@
 // Clase 1: Introducción a TypeScript
 
+import { type } from "os";
+
 
 // |---------------------------------------------------|
 
@@ -64,8 +66,8 @@ console.log("Hola Mundo desde TypeScript");
 // Esto es un comentario en TS
 
 /*
-* Esto es otro comentario en TS
-* Un Comentario Multilinea
+Esto es otro comentario en TS
+Un Comentario Multilinea
 */
 
 
@@ -101,20 +103,20 @@ const PI = 3.1416;
 
 // Al definir el tipo de la variable, no nos permite asignar un valor de un tipo distinto al declarado.
 /*
-* let apellido: string = "Martinez";
-* apellido = 12;
+let apellido: string = "Martinez";
+apellido = 12;
 */
 // Sin embargo, si no definimos el tipo de valor en la variable, el tipado se inferirá en la declaración de la variable, y se comportará de la misma manera que en el ejemplo anterior:
 /*
-* let direccion = "Calle False 123";
-* direccion = 2;
+let direccion = "Calle False 123";
+ direccion = 2;
 */
 
 
 // Si quisieramos permitir que la variable pueda tomar cualquier tipo de valor deberiamos definirlo de la siguiente manera:
 /*
-* let telephone:any = "01199999999";
-* telephone = 01199999999;
+let telephone:any = "01199999999";
+telephone = 01199999999;
 */
 // Hay que tratar de evitar de utilizar any siempre que sea posible. Si vamos a utilizar any tenemos que ser concientes de la razón por la cual vamos a utilizarlo.
 
@@ -127,8 +129,8 @@ dni = false;
 
 // Tampoco se puede re-definir el tipado de una variable. Por ejemplo:
 /*
-* let mascota:string = "Max";
-* mascota:number = "8";
+let mascota:string = "Max";
+mascota:number = "8";
 */
 
 
@@ -282,7 +284,9 @@ console.log(`Tarea: ${tarea1.nombre}`); // Imprime "comprar pan" en consola
 
 // ** Crear Tipos de datos en TypeScript
 
-// La diferencia esencial entre una interfaz y un tipo (type) en TypeScript es que las interfaces se utilizan para definir la estructura de un objeto y establecer un contrato, mientras que los tipos (type) permiten crear nombres personalizados para cualquier tipo de datos y realizar operaciones con ellos. 
+// Las interfaces se utilizan principalmente para describir la forma de un objeto y se pueden implementar y extender en clases, mientras que los tipos personalizados ofrecen más flexibilidad al permitir la combinación de varios tipos existentes. 
+
+// Se crea utilizando la palabra clave type. Permite crear un tipo que puede ser una combinación de otros tipos existentes, como tipos primitivos, tipos de objeto, uniones, intersecciones, etc.
 
 type Producto = {
     precio: number,
@@ -404,3 +408,312 @@ while (tarea1.estado !== Estados.Completado){
 
 
 // |---------------------------------------------------|
+
+
+// Clase 3: Funciones
+
+// La sintaxis es igual a la de JavaScript pero vemos que en los parametros debemos definir el tipado de lo que se va a estar recibiendo.
+
+// Aprovechamos para aclarar algunas buenas practicas mientras mostramos una funcion 
+
+// Es buena practica documentar nuestro codigo. Se documenta de esta forma:
+/**
+ * Funcion que sirve para saludar 
+ * @param nombre Nombre de la persona a saludar
+*/
+function saludar (nombre: string) {
+    console.log(`Hola ${nombre}`);
+};
+
+saludar("Sebastian");
+
+// Pero es mucho mejor que el nombre de las funciones sean lo suficientemente descriptivo como para entender que hace solo leyendo el nombre:
+
+function saludarPorConsola (nombre: string){
+    console.log(`Hola ${nombre}`);
+};
+
+saludarPorConsola("Carlos");
+// No necesariamente debemos pasar un string, podemos darle como argumento una variable que contenga un string y tambien va a funcionar
+let persona: string = "Jorge";
+saludarPorConsola(persona);
+
+
+// |---------------------------------------------------|
+
+
+// Parametros opcionales
+
+// Con la sintaxis de nombre: string = "Pepe" estamos indicando que el parametro es opcional y que el valor por defecto que tomara nombre siempre será Pepe
+/**
+ * Funcion que saluda a una persona que se esta yendo.
+ * @param nombre Nombre de la persona a despedir, por defecto sera "Pepe"
+ */
+function despedirPersona (nombre: string = "Pepe"){
+    console.log(`Adios, ${nombre}!`);
+};
+
+despedirPersona(); // Devolvera en consola un "Adios, Pepe!"
+despedirPersona("Alba"); // Devolvera en consola un "Adios, Alba!"
+
+// Notamos como con la sintaxis nombre?: string le estamos indicando a la funcion que el parametro es opcional
+function despedidaOpcional(nombre?: string){
+    if(nombre){
+        console.log(`Adios, ${nombre}!`);
+    } else {
+        console.log(`Adios!`);
+    };
+};
+despedidaOpcional();
+despedidaOpcional("Marcos");
+
+// Y esto lo podemos aplicar a muchos parametros al mismo tiempo
+
+// Aqui estamos pidiendo de forma obligatoria un nombre, el apellido es opcional y la edad es opcional pero toma valor por defecto 18.
+function variosParams (nombre: string, apellido?: string, edad: number = 18){
+    if(apellido){
+        console.log(`${nombre} ${apellido} tiene ${edad} años.`);
+    } else {
+        console.log(`${nombre} tiene ${edad} años.`);
+    };
+};
+variosParams("Martin") // Martin tiene 18 años
+variosParams("Martin", "San Jose") // Martin San Jose tiene 18 años
+variosParams("Martin", "San Jose", 28); // Martin San Jose tiene 38 años
+variosParams("Martin", undefined, 30); // Martin tiene 30 años
+
+function variosTipos(a: string | number){
+    if(typeof(a) === 'string'){
+        console.log("A es un string");
+    } else if (typeof(a) === 'number') {
+        console.log("A no es un string");
+    };
+};
+variosTipos('hola'); // A es un string
+variosTipos(3); // A no es un string
+
+
+// |---------------------------------------------------|
+
+
+// Return en TypeScript
+
+// Podemos definir el tipo de datos que puede retornar una funcion con la misma sintaxis que venimos trabajando. Al terminar el parentesis de los parametros ponemos : y los tipos de datos que puede retornar la funcion.
+
+// Van a ver que si intentan retornar un numero en esta funcion va a dar un error
+function ejemploReturn(apellido: string, nombre?: string): string{
+    return `${nombre} ${apellido}`;
+};
+
+// Tambien podemos hacer que pueda retornar un tipo de dato u otro.
+function ejemploReturn2(): string | number{
+    return 3;
+};
+
+
+// |---------------------------------------------------|
+
+
+// Multiple Params (Funciones con múltiples parámetros)
+
+const lista: string[] = ["Claudia", "Sandra", "Jessica", "Luciana", "Alberto", "Rogelio", "Jorge", "Juan", "Carlos", "Roberto"];
+
+// Esta función recibe un array, una lista de nombres que luego itera con un forEach y los muestra en la consola uno por uno.
+function ejemploParamLista(nombres: string[]) {
+nombres.forEach((nombre) => {
+console.log(nombre);
+});
+}
+
+ejemploParamLista(lista);
+
+// Ahora bien, también existe la opción de que le pasemos múltiples parámetros sin especificar cuántos exactamente.
+// En esta función, utilizamos el operador spread (...) en la declaración de parámetros para indicar que aceptará un número variable de argumentos. (parametros indefinidos)
+
+function ejemploMultipleParams(...nombres: string[]) {
+nombres.forEach((nombre) => {
+console.log(nombre);
+});
+}
+
+// Si bien a simple vista son parecidas las funciones, en esta última, gracias al spread operator, podemos pasarle parámetros de esta forma:
+
+ejemploMultipleParams("Martin");
+ejemploMultipleParams("Jose", "Agustina", "Camila");
+
+// |---------------------------------------------------|
+
+
+// Void
+
+// Pero... ¿se dieron cuenta de que en estos casos las funciones no retornan nada? Estuvimos hablando recién sobre el retorno en TypeScript y ahora estamos creando funciones que no devuelven ningún valor, sino que solo imprimen datos en la consola.
+
+// En estos casos, las funciones tienen un tipo de retorno VOID.
+
+function funcionVoid(nombre: string): void {
+    console.log(nombre);
+};
+
+funcionVoid("Alejandro");
+
+
+// |---------------------------------------------------|
+
+
+// ❓¿Por qué tipar absolutamente todo?
+
+// Si bien puede parecer tedioso al principio acostumbrarse a tipar absolutamente todo, es una ventaja de TypeScript tener un tipado completo en nuestro código.
+
+// ¿En qué casos es beneficioso? Al documentar una función, podemos comprender rápidamente qué hace y qué tipos de datos espera:
+
+/** Retorna el nombre completo de una persona.
+@param nombre El nombre de la persona.
+@param apellido El apellido de la persona.
+@returns El nombre completo de la persona.
+*/
+function ejDocs(nombre: string, apellido: string): string {
+    return `${nombre} ${apellido}`;
+};
+
+// Al utilizar la función y posicionar el cursor sobre ella, podemos ver claramente qué parámetros debe recibir y qué valor devuelve.
+    
+console.log(ejDocs("Gustavo", "Cerati"));
+
+
+// |---------------------------------------------------|
+
+
+// Arrow Functions
+
+// Las arrow functions, también conocidas como funciones anónimas, también funcionan en TypeScript.
+
+// Aprovecharemos para repasar los tipos personalizados y la anotación de tipos de retorno en las funciones.
+
+type Empleado = {
+    nombre: string,
+    apellidos: string,
+    edad: number
+};
+
+let empleadoGustavo: Empleado = {
+    nombre: "Gustavo",
+    apellidos: "Fring",
+    edad: 51
+};
+
+const mostrarEdadEmpleado = (empleado: Empleado): string => `${empleado.nombre} tiene ${empleado.edad} años`;
+
+console.log(mostrarEdadEmpleado(empleadoGustavo));
+
+
+// |---------------------------------------------------|
+
+
+// Callbacks en Arrow Functions
+
+// En TypeScript, las arrow functions también se pueden utilizar como callbacks, lo que brinda una forma concisa y expresiva de pasar funciones como argumentos a otras funciones. Veamos un ejemplo:
+
+// Creamos una función llamada mapArray que toma un array de números y una función de callback como argumentos.
+// La función mapArray itera sobre cada elemento del array y aplica el callback a cada uno, devolviendo un nuevo array con los resultados.
+
+function mapArray(array: number[], callback: (num: number) => number): number[] {
+
+    const newArray: number[] = [];
+
+    for (let i = 0; i < array.length; i++) {
+        const result = callback(array[i]);
+        newArray.push(result);
+    }
+
+    return newArray;
+}
+
+// Definimos una arrow function llamada double que duplica un número.
+const double = (num: number): number => {
+    return num * 2;
+};
+
+// Definimos un array de números.
+const numbers: number[] = [1, 2, 3, 4, 5];
+
+// Utilizamos la función mapArray pasando el array y la función double como callback.
+
+// Esto aplicará la función double a cada número del array y devolverá un nuevo array con los números duplicados.
+const doubledNumbers = mapArray(numbers, double);
+
+console.log(doubledNumbers); // Resultado: [2, 4, 6, 8, 10]
+
+// Hemos utilizado una arrow function (double) como callback en la función mapArray. La arrow function toma un número como argumento y lo duplica.
+
+// Luego, pasamos la función double como argumento a mapArray, que se encarga de aplicarla a cada número del array y devolver un nuevo array con los números duplicados.
+
+
+// |---------------------------------------------------|
+
+
+// Asincronismo en TypeScript
+
+// Para trabajar en TypeScript con asincronismo tenemos las funciones async y las funciones generadoras
+
+// Async Functions
+async function ejemploAsync(): Promise<string>{
+    await "Tarea a completar antes de seguir con la secuencia de instrucciones";
+    
+    console.log("Tarea completada");
+
+    return "Completado";
+};
+
+ejemploAsync().then((res) => {
+    console.log(`Respuesta: ${res}`);
+}).catch((err) => {
+    console.log(`Ha ocurrido un error: ${err}`);
+}).finally(()=> console.log("Cola de ejecucion finalizada"));
+
+// Generators
+function* ejemploGenerator(){
+    // yield ---> para emitir valores
+    let index = 0;
+    
+    while(index < 5){
+        // Emitimos un valor incrementado
+        yield index++
+    };
+};
+
+// Guardamos la funcion generadora en una variable
+let generadora = ejemploGenerator();
+
+// Accedemos a los valores emitidos
+console.log(generadora.next().value); // 0
+console.log(generadora.next().value); // 1
+console.log(generadora.next().value); // 2
+console.log(generadora.next().value); // 3
+console.log(generadora.next().value); // 4
+console.log(generadora.next().value); // Imprime undefined en consola porque el index deja de ser menor a 5.
+
+
+// Worker 
+
+// Esta funcion va a ser la encargada de llamar a la funcion worker
+function* watcher(valor: number){
+    yield valor; // Emitimos el valor inicial
+    yield* worker(valor); // Llamamos a las emisiones del worker para que emita otros valores
+    yield valor + 4; // Emitimos el valor final + 10
+};
+
+function* worker(valor: number){
+    yield valor + 1;
+    yield valor + 2;
+    yield valor + 3;
+};
+
+let generatorSaga = watcher(0);
+
+console.log(generatorSaga.next().value); // 0 (watcher)
+console.log(generatorSaga.next().value); // 1 (worker)
+console.log(generatorSaga.next().value);// 2 (worker)
+console.log(generatorSaga.next().value);// 3 (worker)
+console.log(generatorSaga.next().value); // 4 (watcher)
+
+// Una funcion no tiene por que terminar.
