@@ -845,3 +845,83 @@ delete miTemporizador.terminar;
 // |---------------------------------------------------|
 
 
+// Clase 5:  Clases y objetos
+
+// Como definimos una clase?
+
+/* (Reemplazado por los imports)
+class Curso {
+    nombre: string;
+    horas: number;
+
+    constructor(nombre: string, horas: number){
+        this.nombre = nombre;
+        this.horas = horas
+    };
+};
+
+class Estudiante {
+    // Propiedades de clase (variables publicas o privadas)
+    nombre: string;
+    apellidos?: string;
+    cursos: Curso[];
+
+    constructor(nombre: string, cursos: Curso[], apellidos?: string){
+        // Inicializamos las propiedades
+        this.nombre = nombre;
+        if(apellidos){
+            this.apellidos = apellidos;
+        };
+        this.cursos = cursos;
+    };
+};
+*/
+
+import { Curso } from "./models/Curso";
+import { Estudiante } from "./models/Estudiante";
+import { LISTA_CURSOS } from "./mock/cursos.mock";
+
+// Cramos un curso (Reemplazado por el mock)
+// const cursoTypeScript: Curso = new Curso("TypeScript", 15);
+// const cursoJavaScript: Curso = new Curso("JavaScript", 20);
+
+const listaCursos: Curso[] = LISTA_CURSOS;
+
+// Creamos un estudiante
+const martin: Estudiante = new Estudiante("Martin", listaCursos, "San Jose");
+
+console.log(`${martin.nombre} estudia: `);
+martin.cursos.forEach((curso: Curso) => {
+    console.log(`${curso.nombre} de ${curso.horas} horas`)
+})
+
+// Ejecutando un getter de la clase Estudiante
+
+console.log(martin.horasEstudiadas);
+// |---------------------------------------------------|
+
+
+// Saber la instancia de un objeto/variable
+
+// En TypeScript, puedes utilizar el operador instanceof para verificar la instancia de un objeto o variable. Aquí tienes un ejemplo de cómo usar instanceof en tu código:
+
+// Verificar si martin es una instancia de la clase Estudiante
+if (martin instanceof Estudiante){
+    console.log("martin es un objeto de la clase Estudiante");
+}else{
+    console.log("martin no es un objeto de la clase Estudiante");
+};
+  
+// Verificar si cursoTypeScript es una instancia de la clase Curso
+/*
+if(cursoTypeScript instanceof Curso){
+    console.log("cursoTypeScript es un objeto de la clase Curso");
+}else{
+    console.log("cursoTypeScript no es un objeto de la clase Curso");
+};
+*/
+// Se utiliza instanceof para verificar si martin es una instancia de la clase Estudiante y si cursoTypeScript es una instancia de la clase Curso. Dependiendo del resultado, se mostrará un mensaje en la consola.
+
+
+// |---------------------------------------------------|
+
