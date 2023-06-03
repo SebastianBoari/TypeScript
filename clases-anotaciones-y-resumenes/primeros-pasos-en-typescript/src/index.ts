@@ -161,6 +161,7 @@ c = 8.9; // Aunque sea un float es un number
 
 // |---------------------------------------------------|
  
+
 // ** Factor Spread (Propagacion)
 
 const unObjeto = {
@@ -190,6 +191,7 @@ let nuevoEstado = {
     session: 4
 }
 console.log(nuevoEstado);
+
 
 // |---------------------------------------------------|
 
@@ -670,7 +672,16 @@ ejemploAsync().then((res) => {
     console.log(`Ha ocurrido un error: ${err}`);
 }).finally(()=> console.log("Cola de ejecucion finalizada"));
 
-// Generators
+
+
+// Generators (funciones generadoras)
+
+// Las funciones generadoras en TypeScript son una característica poderosa que permite la creación de iteradores personalizados. Estas funciones son capaces de generar secuencias de valores utilizando la sintaxis function* en lugar de function.
+
+// La principal ventaja de las funciones generadoras es que nos permiten pausar y reanudar la ejecución de la función en cualquier momento. Esto significa que podemos generar valores bajo demanda, lo que a su vez nos permite ahorrar recursos y mejorar la eficiencia.
+
+// Las funciones generadoras también se utilizan para simplificar el código asíncrono. En lugar de utilizar callbacks o promesas, podemos utilizar funciones generadoras junto con el operador yield para hacer que nuestro código asíncrono sea más legible y fácil de seguir. Esto se logra utilizando una biblioteca como co o utilizando las capacidades nativas de JavaScript a través de las palabras clave async y await.
+
 function* ejemploGenerator(){
     // yield ---> para emitir valores
     let index = 0;
@@ -692,6 +703,12 @@ console.log(generadora.next().value); // 3
 console.log(generadora.next().value); // 4
 console.log(generadora.next().value); // Imprime undefined en consola porque el index deja de ser menor a 5.
 
+
+// Watcher y Worker
+
+// Un watcher es una herramienta que supervisa cambios en archivos de proyectos TypeScript y recompila automáticamente cuando se detecta un cambio, evitando ejecuciones manuales del compilador. 
+
+// Los workers permiten ejecutar código en hilos o procesos separados para aprovechar sistemas multi-hilo o multi-proceso, útiles para tareas intensivas en computación sin bloquear la interfaz de usuario.
 
 // Worker 
 
@@ -716,4 +733,115 @@ console.log(generatorSaga.next().value);// 2 (worker)
 console.log(generatorSaga.next().value);// 3 (worker)
 console.log(generatorSaga.next().value); // 4 (watcher)
 
-// Una funcion no tiene por que terminar.
+// Una funcion generadora no tiene por que terminar.
+
+
+// |---------------------------------------------------|
+
+
+// Sobrecarga de funciones
+
+function mostrarError(error: string | number): void{
+    console.log("Ha habido un error: ", error);
+};
+
+
+// |---------------------------------------------------|
+
+
+// Clase 4: Eventos y persistencia de datos en el navegador
+
+// Persistencia de datos
+
+// 1. LocalStorage: Es un mecanismo de almacenamiento que permite guardar datos en el navegador de forma persistente. Los datos almacenados en LocalStorage no se eliminan automáticamente y estarán disponibles incluso después de cerrar y volver a abrir el navegador.
+
+// 2. SessionStorage: Similar a LocalStorage, SessionStorage también permite almacenar datos en el navegador, pero con una diferencia clave: los datos se eliminan al cerrar la ventana o pestaña del navegador. Los datos de SessionStorage solo están disponibles durante la sesión de navegación actual.
+
+// 3. Cookies: Las cookies son pequeños archivos de texto que se almacenan en el navegador. Pueden contener datos como identificadores de sesión, preferencias del usuario, etc. Las cookies tienen una fecha de caducidad y pueden ser configuradas para tener un alcance específico de URL. Esto significa que pueden estar disponibles solo para un dominio o subdominio específico.
+
+
+// Como trabajamos en el LocalStorage en TypeScript?
+
+/* 
+function guardarLocal(): void{
+    localStorage.set("nombre", "Martin");
+};
+function guardarSession(): void{
+    sessionStorage.set("nombre", "Martin");
+};
+
+
+function leerLocal(): void{
+    let nombre: string = localStorage.get("nombre");
+};
+function leerSession(): void{
+    let nombre: string = sessionStorage.get("nombre");
+};
+*/
+
+// Cookies (con cookies-utils)
+
+// Este es un ejemplo con una libreria que encontramos en npmjs pero puede ser cualquier libreria que elijas.
+
+// Tambien se puede hacer de forma nativa pero es algo mas engorroso.
+
+/* 
+import { deleteAllCookies, deleteCookie, getCookieValue, setCookie } from 'cookies-utils';
+
+const cookieOptions = {
+    name: "usuario", // string,
+    value: "Martin", // string,
+    maxAge: 10 * 60, // optional number (value in seconds),
+    expires: new Date(2099, 10, 1), // optional Date,
+    path: "/"
+};
+
+// Seteamos la cookie
+setCookie(cookieOptions);
+
+// Leer una cookie
+getCookieValue("usuario");
+
+// Eliminar la cookie
+deleteCookie("usuario");
+
+// Eliminar todas las cookies
+deleteAllCookies();
+*/
+
+
+// |---------------------------------------------------|
+
+
+// Clases en TypeScript
+
+class Temporizador {
+    public terminar?: () => void;
+
+    public empezar(): void {
+        // Comprobamos que exista la funcion terminar como callback
+        setTimeout(() => {
+            if(!this.terminar) return;
+            // Cuando haya pasado el tiempo, se ejecutara la funcion terminar
+            this.terminar();
+        }, 10000);
+    };
+};
+
+const miTemporizador: Temporizador = new Temporizador();
+
+// Definimos la funcion del callback a ejecutar cuando termine el tiempo
+miTemporizador.terminar = () => {
+    console.log("Evento terminado");
+};
+
+// Se inicia el timeout y cuando termine se ejecutara la funcion terminar();
+miTemporizador.empezar(); 
+
+// Eliminar la ejecucion de la funcion:
+delete miTemporizador.terminar;
+
+
+// |---------------------------------------------------|
+
+
