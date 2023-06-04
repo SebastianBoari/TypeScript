@@ -9,8 +9,8 @@ Curso impartido por [OpenBootcamp](https://open-bootcamp.com "OpenBootcamp"), pl
 
 *Al finalizar este curso, los alumnos obtendrán una base sólida en el lenguaje de programación TypeScript, así de cómo aplicar técnicas de documentación y mantenimiento, patrones de diseño con el lenguaje, testing y otras buenas prácticas.*
 
--------
-## Calses: 
+
+## Clases: 
 - **Leccion 1:** Introducción a TypeScript
 - **Leccion 2:** Sintaxis, variables y estructuras de control
 - **Leccion 3:**  Funciones
