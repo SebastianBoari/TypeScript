@@ -4,9 +4,12 @@
   "description": "",
   "main": "src/index.ts",
   "scripts": {
-    "start": "ts-node .",
+    "tsNode": "ts-node .",
     "dev": "nodemon .",
-    "trans": "tsc",
+    "linting": "eslint",
+    "linting:fix": "eslint --fix",
+    "document": "typedoc --out docs src",
+    "transpilation": "tsc",
     "build:prod": "rimraf ./build && tsc",
     "start:prod": "npm run build:prod && node build/index.js"
   },
@@ -15,10 +18,17 @@
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^20.2.3",
+    "@typescript-eslint/eslint-plugin": "^5.59.8",
+    "eslint": "^8.42.0",
+    "eslint-config-standard-with-typescript": "^35.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-n": "^15.7.0",
+    "eslint-plugin-promise": "^6.1.1",
     "nodemon": "^2.0.22",
     "rimraf": "^5.0.1",
     "ts-node": "^10.9.1",
-    "typescript": "^5.0.4"
+    "typedoc": "^0.24.7",
+    "typescript": "5.0"
   },
   "dependencies": {
     "cookies-utils": "^1.0.0"

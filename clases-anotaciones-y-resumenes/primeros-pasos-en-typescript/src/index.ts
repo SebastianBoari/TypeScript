@@ -1002,6 +1002,7 @@ console.log(programarTS.resumen());
 
 // Se pueden utilizar para añadir informacion, propiedades extras a un metodo...
 
+/* 
 function Override(label: string) {
     return function (target: any, key: string) {
 
@@ -1028,11 +1029,11 @@ class PruebaDecorador {
   
 let prueba = new PruebaDecorador();
 console.log(prueba.nombre); // Imprime "Prueba"
-
+*/
 
   
 // Otra funcion para usarla como decorador
-
+/* 
 function SoloLectura(target: any, key: string) {
     let value: string = target[key];
 
@@ -1052,15 +1053,16 @@ class PruebaSoloLectura {
     nombre: string = '';
 }
   
-// let pruebaLectura = new PruebaSoloLectura();
+let pruebaLectura = new PruebaSoloLectura();
 
-// pruebaLectura.nombre = "Martin"; // Lanza un error en tiempo de ejecución
+pruebaLectura.nombre = "Martin"; // Lanza un error en tiempo de ejecución
 
-// console.log(pruebaLectura.nombre); // Imprime el valor inicial, '' (cadena vacía)
-
+console.log(pruebaLectura.nombre); // Imprime el valor inicial, '' (cadena vacía)
+*/
 
 // Decorador para parametros de un metodo
 
+/* 
 function mostrarPosicion(target: any, propertyKey: string,  parameterIndex: number){
     console.log("Posicion", parameterIndex);
 };
@@ -1074,7 +1076,7 @@ class PruebaMetodoDecorador {
 
 // Usamos el metodo con el parametro y su decorador
 new PruebaMetodoDecorador().prueba("Hola", false);
-
+*/
 
 // |---------------------------------------------------|
 
@@ -1166,3 +1168,14 @@ if(miPrimerSingleton === miSegundoSingleton){
     console.log("Singleton fallo, las instancias son distintas");
 };
 
+
+// |---------------------------------------------------|
+
+// Clase 8: 8: Debugging, documentación y mantenimiento
+
+// Debug en TS
+// ESLint
+// TypeDoc
+// Readme.md
+
+// |---------------------------------------------------|
