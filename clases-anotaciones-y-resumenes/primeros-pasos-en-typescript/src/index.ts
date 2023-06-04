@@ -762,7 +762,7 @@ function mostrarError(error: string | number): void{
 
 // Como trabajamos en el LocalStorage en TypeScript?
 
-/* 
+
 function guardarLocal(): void{
     localStorage.set("nombre", "Martin");
 };
@@ -777,7 +777,7 @@ function leerLocal(): void{
 function leerSession(): void{
     let nombre: string = sessionStorage.get("nombre");
 };
-*/
+
 
 // Cookies (con cookies-utils)
 
@@ -881,6 +881,7 @@ import { Curso } from "./models/Curso";
 import { Estudiante } from "./models/Estudiante";
 import { LISTA_CURSOS } from "./mock/cursos.mock";
 
+
 // Cramos un curso (Reemplazado por el mock)
 // const cursoTypeScript: Curso = new Curso("TypeScript", 15);
 // const cursoJavaScript: Curso = new Curso("JavaScript", 20);
@@ -924,4 +925,162 @@ if(cursoTypeScript instanceof Curso){
 
 
 // |---------------------------------------------------|
+
+
+// Clase 6: Herencia, polimorfismo, decoradores e interfaces
+
+
+import { Trabajador } from "./models/Persona";
+import { Jefe } from "./models/Persona";
+
+let empleado1 = new Trabajador("Martin", "San Jose", 30, 2000);
+let empleado2 = new Trabajador("Pepe", "Garcia", 31, 1000);
+let empleado3 = new Trabajador("Juan", "Perez", 34, 3000);
+
+empleado1.saludar();
+
+let jefe = new Jefe("Pablo", "Garcia", 50);
+
+jefe.empleados.push(empleado1, empleado2, empleado3);
+
+jefe.empleados.forEach((empleado: Trabajador) => {
+    empleado.saludar();
+});
+
+
+// |---------------------------------------------------|
+
+
+// Interfaces
+
+import { InterfaceTarea } from './models/interfaces/tarea.interface';
+import { Nivel } from './models/interfaces/tarea.interface';
+import { Programar } from "./models/Programar";
+
+let programar: InterfaceTarea = {
+    titulo: "Programar en TypeScript",
+    descripcion: "Practicar con Katas para aprender a desarrollar con TS",
+    completada: false,
+    urgencia: Nivel.Urgente,
+    resumen: function (): string {
+        return `${this.titulo} - ${this.completada}`;
+    }
+};
+
+console.log(programar.resumen());
+
+// Tarea de Programacion (implementa InterfaceTarea)
+
+let programarTS = new Programar("TypeScript", "Tarea de programacion en TS", false, Nivel.Bloqueante);
+
+console.log(programarTS.resumen());
+
+// Es importante que nos familiaricemos con los conceptos de types, classes e interfaces.
+
+// type: es una manera de definir un tipo propio y personalizado que no llega a la complejidad de una clase. No requiere crear instancias, constructores ni métodos. Simplemente son tipos de datos un poco más complejos que un String o un objeto normal.
+
+// interface: se utiliza para definir la estructura y los atributos que queremos que tenga un objeto. También podemos definir métodos obligatorios en una interfaz.
+
+// classes: son una forma de implementar interfaces, métodos y atributos más complejos. Las clases nos permiten crear objetos a partir de un modelo definido por la interfaz.
+
+// Igualmente, a lo largo de los cursos de AngularJS y ReactJS, profundizaremos en estos conceptos de manera constante.
+
+
+// |---------------------------------------------------|
+
+
+// Decoradores Experimentales
+
+// Basicamente son funciones declaradas a traves de un simbolo: @
+
+// Tenemos decoradores para: 
+
+// - Clases
+// - Parametros
+// - Metodos
+// - Propiedades
+
+// Se pueden utilizar para añadir informacion, propiedades extras a un metodo...
+
+function Override(label: string) {
+    return function (target: any, key: string) {
+
+        let value: string = target[key];
+
+        const getter = () => label;
+
+        const setter = (newValue: string) => {
+        value = newValue;
+        };
+
+        Object.defineProperty(target, key, {
+            configurable: false,
+            get: getter,
+            set: setter,
+        });
+    };
+};
+  
+class PruebaDecorador {
+    @Override("Prueba")
+    nombre: string = "Martin";
+};
+  
+let prueba = new PruebaDecorador();
+console.log(prueba.nombre); // Imprime "Prueba"
+
+
+  
+// Otra funcion para usarla como decorador
+
+function SoloLectura(target: any, key: string) {
+    let value: string = target[key];
+
+    const descriptor: PropertyDescriptor = {
+        configurable: false,
+        get: () => value,
+        set: (newValue: string) => {
+        throw new Error(`La propiedad '${key}' es de solo lectura.`);
+        },
+    };
+
+    Object.defineProperty(target, key, descriptor);
+}
+  
+class PruebaSoloLectura {
+    @SoloLectura
+    nombre: string = '';
+}
+  
+// let pruebaLectura = new PruebaSoloLectura();
+
+// pruebaLectura.nombre = "Martin"; // Lanza un error en tiempo de ejecución
+
+// console.log(pruebaLectura.nombre); // Imprime el valor inicial, '' (cadena vacía)
+
+
+// Decorador para parametros de un metodo
+
+function mostrarPosicion(target: any, propertyKey: string,  parameterIndex: number){
+    console.log("Posicion", parameterIndex);
+};
+
+class PruebaMetodoDecorador {
+    prueba(a: string, @mostrarPosicion b: boolean){
+        console.log(b);
+    };
+
+};
+
+// Usamos el metodo con el parametro y su decorador
+new PruebaMetodoDecorador().prueba("Hola", false);
+
+
+
+
+
+
+
+
+
 
