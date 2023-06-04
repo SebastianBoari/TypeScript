@@ -1076,11 +1076,93 @@ class PruebaMetodoDecorador {
 new PruebaMetodoDecorador().prueba("Hola", false);
 
 
+// |---------------------------------------------------|
 
 
+// Clase 7: Patrones de diseño
+
+// ¿Qué son los patrones de diseño y cómo se aplican en el desarrollo de software?
+
+// Los patrones de diseño son soluciones probadas y comprobadas que se utilizan en el mundo del desarrollo de software para abordar problemas comunes y mejorar la estructura, la flexibilidad y la eficiencia de un sistema. Estos patrones representan enfoques prácticos y prácticas recomendadas que han sido desarrollados y refinados a lo largo del tiempo por expertos en la industria.
 
 
+// ¿Cuál es la utilidad principal de los patrones de diseño en el desarrollo de software?
+
+// La utilidad de los patrones de diseño radica en su capacidad para proporcionar soluciones estandarizadas a problemas recurrentes en el desarrollo de software. Al utilizar patrones de diseño, los desarrolladores pueden aprovechar el conocimiento colectivo de la comunidad de desarrollo y evitar reinventar la rueda en cada proyecto. Además, los patrones de diseño promueven la reutilización del código, mejoran la mantenibilidad del software y facilitan la colaboración entre equipos de desarrollo.
 
 
+// ¿Cuáles son las recomendaciones clave al utilizar patrones de diseño?
 
+// Es importante tener en cuenta algunas recomendaciones al utilizar patrones de diseño. Primero, es fundamental comprender el contexto y el propósito del patrón antes de aplicarlo. Cada patrón tiene su caso de uso específico y aplicarlo de manera indiscriminada puede resultar contraproducente. Además, es crucial mantener un equilibrio entre la flexibilidad y la complejidad. No siempre es necesario utilizar patrones complejos si una solución más simple puede lograr el mismo resultado.
+
+
+// ¿Cuáles son los puntos débiles asociados con el uso de patrones de diseño?
+
+// Sin embargo, también existen algunos puntos débiles asociados con el uso de patrones de diseño. El principal desafío radica en la necesidad de comprender y aplicar correctamente los patrones. Algunos patrones pueden ser difíciles de entender y aplicar correctamente, lo que puede llevar a errores y a un código más complicado. Además, es importante recordar que los patrones de diseño no son una bala de plata y no deben considerarse como la solución a todos los problemas de diseño. Cada proyecto es único y requiere un enfoque personalizado.
+
+
+// ¿Cuáles son los aspectos importantes a tener en cuenta al utilizar patrones de diseño en un proyecto?
+
+// Es fundamental tener en cuenta algunos aspectos importantes al utilizar patrones de diseño. En primer lugar, los patrones deben aplicarse con prudencia y moderación. No todos los problemas requieren la aplicación de un patrón de diseño, y a veces una solución más simple es suficiente. Además, es esencial mantener la legibilidad y la claridad del código. A veces, el uso excesivo de patrones de diseño puede hacer que el código sea más difícil de entender y mantener.
+
+
+// ¿Cuáles son algunos mitos comunes sobre los patrones de diseño y cómo desmitificarlos?
+
+// Es importante desmitificar algunos conceptos erróneos comunes sobre los patrones de diseño. Algunas personas pueden creer que los patrones de diseño son solo para desarrolladores experimentados o que solo se aplican a sistemas grandes y complejos. Sin embargo, los patrones de diseño son herramientas útiles para todo tipo de proyectos y pueden beneficiar tanto a desarrolladores novatos como a expertos. Además, los patrones de diseño no deben considerarse como soluciones definitivas, sino como guías flexibles que pueden adaptarse a diferentes contextos y requisitos.
+
+
+// ¿Cuáles son los aciertos principales de utilizar patrones de diseño en el desarrollo de software?
+
+// El uso de patrones de diseño tiene muchos aciertos y ventajas. En primer lugar, los patrones de diseño ayudan a mejorar la modularidad y la reutilización del código. Al seguir los principios de diseño de los patrones, los desarrolladores pueden escribir código más limpio y estructurado, lo que facilita su comprensión y mantenimiento a largo plazo. Además, los patrones de diseño fomentan la extensibilidad y la flexibilidad del software, lo que permite adaptarse a cambios futuros con mayor facildad. Los patrones de diseño también promueven la escalabilidad del software, permitiendo que los sistemas crezcan de manera ordenada y eficiente a medida que se agregan nuevas funcionalidades.
+
+
+// ¿Cuáles son las ventajas clave de aplicar patrones de diseño en un proyecto?
+
+// Otra ventaja de utilizar patrones de diseño es la mejora en la comunicación y la colaboración entre equipos de desarrollo. Los patrones de diseño proporcionan un vocabulario común y una base de conocimiento compartida, lo que facilita la comprensión y el intercambio de ideas entre los miembros del equipo. Esto contribuye a una mayor coherencia en el código y a un desarrollo más rápido y eficiente.
+
+
+// ¿Cuáles son los desafíos en la comunicación y colaboración al utilizar patrones de diseño?
+
+// Además, los patrones de diseño permiten abordar problemas complejos de manera estructurada y sistemática. Proporcionan soluciones probadas y refinadas que han sido validadas por la comunidad de desarrollo a lo largo del tiempo. Al utilizar patrones de diseño, los desarrolladores pueden confiar en enfoques que han demostrado ser exitosos en situaciones similares, lo que reduce el riesgo de errores y problemas inesperados.
+
+
+// ¿Cómo se debe adaptar y aplicar correctamente un patrón de diseño en un proyecto específico?
+
+// Es importante mencionar que los patrones de diseño no son una solución única y definitiva para todos los problemas de desarrollo de software. Cada proyecto tiene sus propias características y requisitos, y los patrones de diseño deben aplicarse de manera inteligente y adaptarse al contexto específico. Es fundamental comprender los principios detrás de cada patrón y evaluar cuidadosamente si es apropiado y beneficioso para el proyecto en cuestión.
+
+
+// Patrones Creacionales:
+
+//Los patrones creacionales se centran en los mecanismos de creación de objetos. Estos patrones proporcionan soluciones para la creación de objetos de manera flexible y eficiente, fomentando la reutilización del código. Al utilizar patrones creacionales, los desarrolladores pueden crear instancias de objetos de forma dinámica, lo que les brinda mayor control y flexibilidad en la construcción de sistemas. Estos patrones también ayudan a encapsular los detalles de creación de objetos, lo que facilita la evolución y el mantenimiento del código.
+
+// Patrones Estructurales:
+
+// Los patrones estructurales se centran en la eficiencia y flexibilidad de la estructura a la hora de definir clases y objetos. Estos patrones proporcionan soluciones para organizar y relacionar clases y objetos de manera eficiente, permitiendo que el sistema evolucione sin afectar su estructura subyacente. Estos patrones ayudan a mejorar la claridad y la legibilidad del código, así como a reducir la dependencia entre clases. Al utilizar patrones estructurales, los desarrolladores pueden lograr un diseño más flexible y adaptable, facilitando futuras modificaciones y extensiones del sistema.
+
+// Patrones de Comportamiento:
+
+// Los patrones de comportamiento se centran en la asignación efectiva de responsabilidades entre objetos y en la comunicación efectiva entre ellos. Estos patrones proporcionan soluciones para definir cómo los objetos interactúan y colaboran entre sí para lograr un comportamiento específico. Al utilizar patrones de comportamiento, los desarrolladores pueden mejorar la modularidad y la flexibilidad del sistema, ya que cada objeto se enfoca en una responsabilidad específica. Estos patrones también promueven la comunicación clara y efectiva entre objetos, lo que facilita el intercambio de información y la coordinación de acciones.
+
+// Cada tipo de patrón (creacional, estructural y de comportamiento) aborda diferentes aspectos del desarrollo de software y ofrece soluciones específicas para problemas comunes. La comprensión de estos patrones y su aplicación adecuada en el diseño de software puede llevar a sistemas más flexibles, reutilizables y fáciles de mantener. Al utilizar patrones creacionales, los desarrolladores pueden crear objetos de manera dinámica, mejorar la reutilización del código y adaptarse a diferentes escenarios. Los patrones estructurales permiten organizar y relacionar clases y objetos de manera eficiente, facilitando futuras modificaciones y extensiones. Por último, los patrones de comportamiento ayudan a asignar responsabilidades claras entre objetos y a establecer una comunicación efectiva para lograr un comportamiento deseado.
+
+// Es importante destacar que el uso adecuado de los patrones requiere comprender el contexto y los requisitos del proyecto. No todos los patrones son aplicables en todas las situaciones, y su uso excesivo o incorrecto puede complicar el código y dificultar su mantenimiento. Los patrones de diseño son herramientas poderosas, pero deben utilizarse con prudencia y considerando las necesidades específicas del proyecto en cuestión.
+
+// Ejemplo:
+
+// Recomendamos esta lectura: https://refactoring.guru/es/design-patterns
+
+// Patrones Creacionales:
+
+// SINGLETON
+import { Singleton } from "./patterns/Singleton";
+
+const miPrimerSingleton = Singleton.getInstance();
+const miSegundoSingleton = Singleton.getInstance();
+
+// Comrpueba si ambos son iguales
+if(miPrimerSingleton === miSegundoSingleton){
+    console.log("Singleton funciona correctamente, ambas variables contienen la misma instancia.");
+} else {
+    console.log("Singleton fallo, las instancias son distintas");
+};
 
